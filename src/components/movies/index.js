@@ -1,3 +1,4 @@
+import "whatwg-fetch";
 import { h, Component } from "preact";
 import Movie from "../movie";
 
@@ -22,6 +23,7 @@ export default class Movies extends Component {
   };
 
   onScroll = () => {
+    const buffer = 300;
     const { take, movies: { length } } = this.state;
     const {
       innerHeight,
@@ -29,7 +31,7 @@ export default class Movies extends Component {
       document: { body: { offsetHeight } }
     } = window;
 
-    if (innerHeight + scrollY >= offsetHeight && take < length) {
+    if (innerHeight + scrollY + buffer >= offsetHeight && take < length) {
       this.setState({ take: take + 5 });
     }
   };
