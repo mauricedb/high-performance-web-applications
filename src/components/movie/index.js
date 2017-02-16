@@ -6,7 +6,7 @@ export default class Movie extends Component {
     return (
       <div class="row well">
         <div class="col-sm-2 hidden-xs">
-          <img class="img-responsive ng-scope" src={movie.poster_path} />
+          <img class="img-responsive ng-scope" src={`http://image.tmdb.org/t/p/w150${movie.poster_path}`} />
         </div>
         <div class="col-sm-10">
           <h4 class="title">{movie.title}</h4>
