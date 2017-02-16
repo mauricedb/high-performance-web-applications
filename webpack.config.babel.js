@@ -103,7 +103,9 @@ module.exports = {
 		}),
 		new CopyWebpackPlugin([
 			{ from: './manifest.json', to: './' },
-			{ from: './favicon.ico', to: './' }
+			{ from: './favicon.ico', to: './' },
+			{ from: './web.config', to: './' },
+			{ from: './api', to: './api' }
 		])
 	]).concat(ENV==='production' ? [
 		new V8LazyParseWebpackPlugin(),
@@ -138,7 +140,8 @@ module.exports = {
 			ServiceWorker: {
 				events: true
 			},
-			publicPath: '/'
+			publicPath: '/',
+			excludes: ['**/.*', '**/*.map', '**/*.json', 'web.config']
 		})
 	] : []),
 
