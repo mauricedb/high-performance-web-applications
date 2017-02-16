@@ -4,6 +4,7 @@ import { Router } from "preact-router";
 import Header from "./header";
 import Home from "./home";
 import Movies from "./movies";
+import Directors from './directors';
 
 export default class App extends Component {
   /** Gets fired when the route changes.
@@ -22,7 +23,7 @@ export default class App extends Component {
 
           <Home path="/" />
           <Movies path="/movies" />
-          <Movies path="/directors" />
+          <Directors path="/directors" />
         </Router>
       </div>
     );

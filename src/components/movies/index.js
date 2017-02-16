@@ -9,7 +9,6 @@ function isScreenXS() {
 export default class Movies extends Component {
   state = {
     movies: [],
-    innerWidth: window.innerWidth,
     screenXS: isScreenXS()
   };
 
@@ -34,11 +33,11 @@ export default class Movies extends Component {
     window.removeEventListener("resize", this.onResize);
   }
 
-  render({}, { movies, innerWidth, screenXS }) {
+  render({}, { movies, screenXS }) {
     return (
       <div class="container">
         {movies.map(movie => (
-          <Movie movie={movie} innerWidth={innerWidth} screenXS={screenXS} />
+          <Movie movie={movie} screenXS={screenXS} />
         ))}
       </div>
     );
