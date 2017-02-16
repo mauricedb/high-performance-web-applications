@@ -9,7 +9,7 @@ export default class Movie extends Component {
           <img class="img-responsive ng-scope" src={`http://image.tmdb.org/t/p/w150${movie.poster_path}`} />
         </div>
         <div class="col-sm-10">
-          <h4 class="title">{movie.title}</h4>
+          <h4>{movie.title}</h4>
           <p>{movie.overview}</p>
           <span class="pull-left">
             <a class="btn btn-primary" href="#/movies/10180">Read More</a>

@@ -15,7 +15,7 @@ export default class Movies extends Component {
 
   render({}, { movies }) {
     return (
-      <div>
+      <div class="container">
         {movies.map(movie => <Movie movie={movie} />)}
       </div>
     );
