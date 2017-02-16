@@ -9,7 +9,7 @@ export default class Movie extends Component {
       img = (
         <div class="col-sm-2">
           <img
-            class="img-responsive ng-scope"
+            class="img-responsive"
             src={`//image.tmdb.org/t/p/w150${movie.poster_path}`}
           />
         </div>
