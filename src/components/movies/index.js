@@ -9,6 +9,7 @@ function isScreenXS() {
 export default class Movies extends Component {
   state = {
     movies: [],
+    take: 5,
     screenXS: isScreenXS()
   };
 
@@ -20,8 +21,22 @@ export default class Movies extends Component {
     }
   };
 
+  onScroll = () => {
+    const { take, movies: { length } } = this.state;
+    const {
+      innerHeight,
+      scrollY,
+      document: { body: { offsetHeight } }
+    } = window;
+
+    if (innerHeight + scrollY >= offsetHeight && take < length) {
+      this.setState({ take: take + 5 });
+    }
+  };
+
   componentDidMount() {
     window.addEventListener("resize", this.onResize);
+    window.addEventListener("scroll", this.onScroll);
 
     fetch("/api/movies.json")
       .then(rsp => rsp.ok ? rsp : Promise.reject(rsp))
@@ -31,14 +46,15 @@ export default class Movies extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.onResize);
+    window.removeEventListener("scroll", this.onScroll);
   }
 
-  render({}, { movies, screenXS }) {
+  render({}, { movies, take, screenXS }) {
     return (
-      <div class="container">
-        {movies.map(movie => (
-          <Movie movie={movie} screenXS={screenXS} />
-        ))}
+      <div class="container" id="movies">
+        {movies
+          .slice(0, take)
+          .map(movie => <Movie movie={movie} screenXS={screenXS} />)}
       </div>
     );
   }
