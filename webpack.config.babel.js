@@ -138,10 +138,11 @@ module.exports = {
 			relativePaths: false,
 			AppCache: false,
 			ServiceWorker: {
-				events: true
+				events: true,
+				navigateFallbackURL: '/'
 			},
 			publicPath: '/',
-			excludes: ['**/.*', '**/*.map', '**/*.json', 'web.config']
+			excludes: ['**/.*', '**/*.map', '**/*.json', 'web.config'],
 		})
 	] : []),
 
