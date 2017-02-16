@@ -14,13 +14,14 @@ return (
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Movies</a>
+	  					<Link class="navbar-brand" href="/">Home</Link>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="/">Movies</a></li>
-        <li><a href="#">Directors</a></li>
+		  
+        <li><Link href="/movies">Movies</Link></li>
+        <li><Link href="/directors">Directors</Link></li>
       </ul>
     </div>
   </div>
