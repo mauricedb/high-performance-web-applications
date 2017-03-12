@@ -15,7 +15,7 @@ export default class Directors extends Component {
   render({}, { directors }) {
     return (
       <div class="container">
-          <h2>Directors</h2>
+        <h2>Directors</h2>
         <ul>
           {directors.map(director => <li>{director}</li>)}
         </ul>
