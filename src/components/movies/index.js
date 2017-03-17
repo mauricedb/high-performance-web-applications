@@ -3,7 +3,7 @@ import { h, Component } from "preact";
 import Movie from "../movie";
 
 function isScreenXS() {
-  const mql = window.matchMedia("(max-width: 767px)");
+  const mql = matchMedia("(max-width: 767px)");
   return mql.matches;
 }
 
@@ -23,17 +23,17 @@ export default class Movies extends Component {
   };
 
   onScroll = () => {
-    const buffer = 300;
-    const { take, movies: { length } } = this.state;
-    const {
-      innerHeight,
-      scrollY,
-      document: { body: { offsetHeight } }
-    } = window;
+    // const buffer = 300;
+    // const { take, movies: { length } } = this.state;
+    // const {
+    //   innerHeight,
+    //   scrollY,
+    //   document: { body: { offsetHeight } }
+    // } = window;
 
-    if (innerHeight + scrollY + buffer >= offsetHeight && take < length) {
-      this.setState({ take: take + 5 });
-    }
+    // if (innerHeight + scrollY + buffer >= offsetHeight && take < length) {
+    //   this.setState({ take: take + 5 });
+    // }
   };
 
   componentDidMount() {
@@ -55,7 +55,7 @@ export default class Movies extends Component {
     return (
       <div class="container" id="movies">
         {movies
-          .slice(0, take)
+          //.slice(0, take)
           .map(movie => <Movie movie={movie} screenXS={screenXS} />)}
       </div>
     );
