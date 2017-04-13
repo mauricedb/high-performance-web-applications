@@ -5,7 +5,7 @@ export default class Movie extends Component {
   render({ movie, screenXS }) {
     let img = null;
 
-    if (!screenXS) {
+    // if (!screenXS) {
       img = (
         <div class="col-sm-2 hidden-xs">
           <img
@@ -14,7 +14,7 @@ export default class Movie extends Component {
           />
         </div>
       );
-    }
+    // }
 
     return (
       <div class="row well">
