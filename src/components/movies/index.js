@@ -1,4 +1,3 @@
-import "whatwg-fetch";
 import { h, Component } from "preact";
 import Movie from "../movie";
 
@@ -23,17 +22,19 @@ export default class Movies extends Component {
   };
 
   onScroll = () => {
-    // const buffer = 300;
-    // const { take, movies: { length } } = this.state;
-    // const {
-    //   innerHeight,
-    //   scrollY,
-    //   document: { body: { offsetHeight } }
-    // } = window;
+    const buffer = 300;
+    const { take, movies: { length } } = this.state;
+    const {
+      innerHeight,
+      pageYOffset,
+      document: { body: { offsetHeight } }
+    } = window;
 
-    // if (innerHeight + scrollY + buffer >= offsetHeight && take < length) {
-    //   this.setState({ take: take + 5 });
-    // }
+
+    console.log('onScroll', innerHeight , pageYOffset , buffer , offsetHeight)
+    if (innerHeight + pageYOffset + buffer >= offsetHeight && take < length) {
+      this.setState({ take: take + 5 });
+    }
   };
 
   componentDidMount() {
@@ -55,7 +56,7 @@ export default class Movies extends Component {
     return (
       <div class="container" id="movies">
         {movies
-          //.slice(0, take)
+          .slice(0, take)
           .map(movie => <Movie movie={movie} screenXS={screenXS} />)}
       </div>
     );
