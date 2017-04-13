@@ -7,7 +7,7 @@ export default class Movie extends Component {
 
     if (!screenXS) {
       img = (
-        <div class="col-sm-2">
+        <div class="col-sm-2 hidden-xs">
           <img
             class="img-responsive"
             src={`//image.tmdb.org/t/p/w150${movie.poster_path}`}

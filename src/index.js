@@ -1,7 +1,11 @@
-// import 'promise-polyfill';
-// import 'isomorphic-fetch';
+import Promise from "promise-polyfill";
+import "whatwg-fetch";
 import { h, render } from 'preact';
 import './style';
+
+if (!window.Promise) {
+  window.Promise = Promise;
+}
 
 let root = document.getElementById('app');
 function init() {

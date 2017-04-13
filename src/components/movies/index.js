@@ -1,9 +1,8 @@
-import "whatwg-fetch";
 import { h, Component } from "preact";
 import Movie from "../movie";
 
 function isScreenXS() {
-  const mql = window.matchMedia("(max-width: 767px)");
+  const mql = matchMedia("(max-width: 767px)");
   return mql.matches;
 }
 
@@ -27,11 +26,11 @@ export default class Movies extends Component {
     const { take, movies: { length } } = this.state;
     const {
       innerHeight,
-      scrollY,
+      pageYOffset,
       document: { body: { offsetHeight } }
     } = window;
 
-    if (innerHeight + scrollY + buffer >= offsetHeight && take < length) {
+    if (innerHeight + pageYOffset + buffer >= offsetHeight && take < length) {
       this.setState({ take: take + 5 });
     }
   };
