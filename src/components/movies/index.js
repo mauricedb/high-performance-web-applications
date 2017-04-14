@@ -13,31 +13,31 @@ export default class Movies extends Component {
     screenXS: isScreenXS()
   };
 
-  // onResize = () => {
-  //   const screenXS = isScreenXS();
+  onResize = () => {
+    const screenXS = isScreenXS();
 
-  //   if (screenXS !== this.state.screenXS) {
-  //     this.setState({ screenXS });
-  //   }
-  // };
+    if (screenXS !== this.state.screenXS) {
+      this.setState({ screenXS });
+    }
+  };
 
-  // onScroll = () => {
-  //   const buffer = 300;
-  //   const { take, movies: { length } } = this.state;
-  //   const {
-  //     innerHeight,
-  //     pageYOffset,
-  //     document: { body: { offsetHeight } }
-  //   } = window;
+  onScroll = () => {
+    const buffer = 300;
+    const { take, movies: { length } } = this.state;
+    const {
+      innerHeight,
+      pageYOffset,
+      document: { body: { offsetHeight } }
+    } = window;
 
-  //   if (innerHeight + pageYOffset + buffer >= offsetHeight && take < length) {
-  //     this.setState({ take: take + 5 });
-  //   }
-  // };
+    if (innerHeight + pageYOffset + buffer >= offsetHeight && take < length) {
+      this.setState({ take: take + 5 });
+    }
+  };
 
   componentDidMount() {
-    // window.addEventListener("resize", this.onResize);
-    // window.addEventListener("scroll", this.onScroll);
+    window.addEventListener("resize", this.onResize);
+    window.addEventListener("scroll", this.onScroll);
 
     fetch("/api/movies.json")
       .then(rsp => rsp.ok ? rsp : Promise.reject(rsp))
@@ -46,15 +46,15 @@ export default class Movies extends Component {
   }
 
   componentWillUnmount() {
-    // window.removeEventListener("resize", this.onResize);
-    // window.removeEventListener("scroll", this.onScroll);
+    window.removeEventListener("resize", this.onResize);
+    window.removeEventListener("scroll", this.onScroll);
   }
 
   render({}, { movies, take, screenXS }) {
     return (
       <div class="container" id="movies">
         {movies
-          //.slice(0, take)
+          .slice(0, take)
           .map(movie => <Movie movie={movie} screenXS={screenXS} />)}
       </div>
     );
