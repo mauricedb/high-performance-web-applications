@@ -10,7 +10,7 @@ export default class Movies extends Component {
   state = {
     movies: [],
     take: 5,
-    screenXS: isScreenXS()
+    screenXS: false //isScreenXS()
   };
 
   onResize = () => {
@@ -36,8 +36,8 @@ export default class Movies extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener("resize", this.onResize);
-    window.addEventListener("scroll", this.onScroll);
+    // window.addEventListener("resize", this.onResize);
+    // window.addEventListener("scroll", this.onScroll);
 
     fetch("/api/movies.json")
       .then(rsp => rsp.ok ? rsp : Promise.reject(rsp))
@@ -46,15 +46,15 @@ export default class Movies extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.onResize);
-    window.removeEventListener("scroll", this.onScroll);
+    // window.removeEventListener("resize", this.onResize);
+    // window.removeEventListener("scroll", this.onScroll);
   }
 
   render({}, { movies, take, screenXS }) {
     return (
       <div class="container" id="movies">
         {movies
-          .slice(0, take)
+          //.slice(0, take)
           .map(movie => <Movie movie={movie} screenXS={screenXS} />)}
       </div>
     );
