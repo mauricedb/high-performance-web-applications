@@ -54,7 +54,7 @@ export default class Movies extends Component {
     return (
       <div class="container" id="movies">
         {movies
-          .slice(0, take)
+          //.slice(0, take)
           .map(movie => <Movie movie={movie} screenXS={screenXS} />)}
       </div>
     );
