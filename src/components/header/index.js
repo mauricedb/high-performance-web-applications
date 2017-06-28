@@ -5,15 +5,16 @@ import style from "./style";
 export default class Header extends Component {
   state = {
     expanded: false
-  }
+  };
   toggleExpanded = () => {
-    this.setState({expanded: !this.state.expanded});
-  }
+    this.setState({ expanded: !this.state.expanded });
+  };
   collapse = () => {
-    this.setState({expanded: false});
-  }
-  render({}, {expanded}) {
-    const dropDownClass = expanded ? '': 'collapse navbar-collapse';
+    this.setState({ expanded: false });
+  };
+  render({}, { expanded }) {
+    const dropDownClass = expanded ? null : "collapse navbar-collapse";
+    const buttonClass = expanded ? "navbar-toggle" : "navbar-toggle collapsed";
 
     return (
       <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -21,10 +22,8 @@ export default class Header extends Component {
           <div class="navbar-header">
             <button
               type="button"
-              class="navbar-toggle collapsed"
-              data-toggle="collapse"
-              data-target="#bs-example-navbar-collapse-1"
-              aria-expanded="false"
+              class={buttonClass}
+              aria-expanded={expanded}
               onClick={this.toggleExpanded}
             >
               <span class="sr-only">Toggle navigation</span>
@@ -35,13 +34,14 @@ export default class Header extends Component {
             <Link class="navbar-brand" href="/">Home</Link>
           </div>
 
-          <div
-            class={dropDownClass}
-            id="bs-example-navbar-collapse-1"
-          >
+          <div class={dropDownClass}>
             <ul class="nav navbar-nav navbar-right">
-              <li><Link onClick={this.collapse} href="/movies">Movies</Link></li>
-              <li><Link onClick={this.collapse} href="/directors">Directors</Link></li>
+              <li>
+                <Link onClick={this.collapse} href="/movies">Movies</Link>
+              </li>
+              <li>
+                <Link onClick={this.collapse} href="/directors">Directors</Link>
+              </li>
             </ul>
           </div>
         </div>
