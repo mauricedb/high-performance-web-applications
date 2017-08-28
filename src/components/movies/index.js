@@ -1,24 +1,24 @@
 import { h, Component } from "preact";
 import Movie from "../movie";
 
-function isScreenXS() {
-  const mql = matchMedia("(max-width: 767px)");
-  return mql.matches;
-}
-
 export default class Movies extends Component {
+  isScreenXS = () => {
+    if (!this.mediaQueryList) {
+      this.mediaQueryList = matchMedia("(max-width: 767px)");
+      
+      this.mediaQueryList.addListener(e => {
+        if (e.matches !== this.state.screenXS) {
+          this.setState({ screenXS: e.matches });
+        }
+      })
+    }
+    return this.mediaQueryList.matches;
+  }
+
   state = {
     movies: [],
     take: 5,
-    screenXS: isScreenXS()
-  };
-
-  onResize = () => {
-    const screenXS = isScreenXS();
-
-    if (screenXS !== this.state.screenXS) {
-      this.setState({ screenXS });
-    }
+    screenXS: this.isScreenXS()
   };
 
   onScroll = () => {
@@ -35,8 +35,8 @@ export default class Movies extends Component {
     }
   };
 
+
   componentDidMount() {
-    window.addEventListener("resize", this.onResize);
     window.addEventListener("scroll", this.onScroll);
 
     fetch("/api/movies.json")
@@ -46,7 +46,6 @@ export default class Movies extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.onResize);
     window.removeEventListener("scroll", this.onScroll);
   }
 
